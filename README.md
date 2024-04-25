@@ -1,24 +1,12 @@
-# README
+# Overview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails web application that provides a quiz answering panel and allows for multiple respondents.
 
-Things you may want to cover:
+# Features
 
-* Ruby version
+- Displays a quiz answering panel
+- Allows for multiple respondents
 
-* System dependencies
+# Ussage
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TBD
