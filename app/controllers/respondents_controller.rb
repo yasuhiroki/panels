@@ -25,7 +25,9 @@ class RespondentsController < ApplicationController
 
     respond_to do |format|
       if @respondent.save
-        format.html { redirect_to respondent_url(@respondent), notice: "Respondent was successfully created." }
+        session[:respondent_id] = @respondent.id
+
+        format.html { redirect_to answers_url, notice: "Respondent was successfully created." }
         format.json { render :show, status: :created, location: @respondent }
       else
         format.html { render :new, status: :unprocessable_entity }

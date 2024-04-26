@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :set_respondent
   before_action :set_answer, only: %i[ show edit update destroy ]
 
   # GET /answers or /answers.json
@@ -61,6 +62,10 @@ class AnswersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
+    end
+
+    def set_respondent
+      @respondent = Respondent.find(session[:respondent_id])
     end
 
     # Only allow a list of trusted parameters through.

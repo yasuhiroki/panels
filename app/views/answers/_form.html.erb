@@ -12,8 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.label :respondent_id, style: "display: block" %>
-    <%= form.text_field :respondent_id %>
+    <%= form.text_field :respondent_id, value: @respondent.id, hidden: true %>
   </div>
 
   <div>
