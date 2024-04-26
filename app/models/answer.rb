@@ -1,3 +1,3 @@
 class Answer < ApplicationRecord
-  belongs_to :respondent_id
+  belongs_to :respondent
 end

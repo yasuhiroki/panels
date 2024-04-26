@@ -14,7 +14,7 @@ class AnswersTest < ApplicationSystemTestCase
     visit answers_url
     click_on "New answer"
 
-    fill_in "Respondent id", with: @answer.respondent_id_id
+    fill_in "Respondent id", with: @answer.respondent_id
     fill_in "Text", with: @answer.text
     click_on "Create Answer"
 
@@ -26,7 +26,7 @@ class AnswersTest < ApplicationSystemTestCase
     visit answer_url(@answer)
     click_on "Edit this answer", match: :first
 
-    fill_in "Respondent id", with: @answer.respondent_id_id
+    fill_in "Respondent id", with: @answer.respondent_id
     fill_in "Text", with: @answer.text
     click_on "Update Answer"
 
