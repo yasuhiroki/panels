@@ -1,5 +1,7 @@
-<div id="<%= dom_id answer %>" class="flex-auto flex flex-col justify-center">
-  <p class="text-black">
-    <%= answer.text %>
-  </p>
+<div class="flex-auto flex flex-col justify-center">
+  <%= turbo_frame_tag answer do %>
+    <p class="text-black">
+    <%= link_to answer.text, edit_answer_path(answer) %>
+    </p>
+  <% end %>
 </div>

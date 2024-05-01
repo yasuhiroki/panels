@@ -1,26 +1,17 @@
-<%= form_with(model: answer) do |form| %>
-  <% if answer.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+<%= turbo_frame_tag answer do %>
+    <%= form_with(model: answer) do |form| %>
+      <div id="<%= dom_id answer %>" class="flex-auto flex flex-col justify-center">
+        <div>
+          <%= form.text_field :respondent_id, value: @respondent.id, hidden: true %>
+        </div>
 
-      <ul>
-        <% answer.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <div>
+          <%= form.text_area :text, require: true %>
+        </div>
 
-  <div>
-    <%= form.text_field :respondent_id, value: @respondent.id, hidden: true %>
-  </div>
-
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_area :text %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+        <div>
+          <%= form.submit "answer", class: "bg-green-500 hover:bg-green-400 text-white rounded px-4 py-2" %>
+        </div>
+      </div>
+    <% end %>
 <% end %>
