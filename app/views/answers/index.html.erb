@@ -13,7 +13,11 @@
         <% if respondent.answers.blank? %>
           <div class="flex-auto flex flex-col justify-center">
             <p class="text-neutral-500">
+            <% if @respondent.id == respondent.id %>
+              <%= link_to "未回答", new_answer_path %>
+            <% else %>
               未回答
+            <% end %>
             </p>
           </div>
         <% else %>
