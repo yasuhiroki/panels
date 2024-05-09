@@ -1,7 +1,11 @@
 <div class="flex-auto flex flex-col justify-center">
-  <%= turbo_frame_tag answer do %>
+  <%= turbo_frame_tag "answer" do %>
     <p class="text-black">
-    <%= link_to answer.text, edit_answer_path(answer) %>
+      <% if answer.persisted? %>
+        <%= link_to answer.text, edit_answer_path(answer) %>
+      <% else %>
+        <%= link_to answer.text || "未回答", new_answer_path %>
+      <% end %>
     </p>
   <% end %>
 </div>
