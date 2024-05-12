@@ -1,0 +1,17 @@
+<div id="<%= dom_id question_answer %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Question:</strong>
+    <%= question_answer.question_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Answer:</strong>
+    <%= question_answer.answer_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this question answer", question_answer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this question answer", edit_question_answer_path(question_answer), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
