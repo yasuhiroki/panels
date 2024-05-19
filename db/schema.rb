@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_145849) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_032547) do
   create_table "answers", force: :cascade do |t|
     t.integer "respondent_id", null: false
     t.text "text"
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_145849) do
     t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
+    t.index ["room_id"], name: "index_questions_on_room_id"
   end
 
   create_table "respondents", force: :cascade do |t|
@@ -40,7 +42,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_145849) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.integer "current_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["current_question_id"], name: "index_rooms_on_current_question_id"
+  end
+
   add_foreign_key "answers", "respondents"
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_answers", "questions"
+  add_foreign_key "questions", "rooms"
+  add_foreign_key "rooms", "questions", column: "current_question_id"
 end
