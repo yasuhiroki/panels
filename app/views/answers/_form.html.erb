@@ -1,9 +1,11 @@
 <%= turbo_frame_tag "answer" do %>
     <%= form_with(model: answer) do |form| %>
       <div id="<%= dom_id answer %>" class="flex-auto flex flex-col justify-center">
-        <div>
-          <%= form.text_field :respondent_id, value: @respondent.id, hidden: true %>
-        </div>
+        <%= form.hidden_field :respondent_id, value: @respondent.id, hidden: true %>
+
+        <%= form.fields_for :question_answer do |form_qa| %>
+          <%= form_qa.text_field :question_id, hidden: true %>
+        <% end %>
 
         <div>
           <%= form.text_area :text, require: true %>

@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
+    @answer.build_question_answer(question_id: Question.first.id)
   end
 
   # GET /answers/1/edit
@@ -70,6 +71,11 @@ class AnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def answer_params
-      params.require(:answer).permit(:respondent_id, :text)
+      params
+        .require(:answer)
+        .permit(
+          :respondent_id, :text,
+          question_answer_attributes: [:id, :question_id]
+        )
     end
 end
