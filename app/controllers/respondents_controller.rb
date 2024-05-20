@@ -27,7 +27,7 @@ class RespondentsController < ApplicationController
       if @respondent.save
         session[:respondent_id] = @respondent.id
 
-        format.html { redirect_to answers_url, notice: "Respondent was successfully created." }
+        format.html { redirect_to rooms_url, notice: "Respondent was successfully created." }
         format.json { render :show, status: :created, location: @respondent }
       else
         format.html { render :new, status: :unprocessable_entity }
