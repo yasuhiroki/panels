@@ -26,6 +26,10 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        if @room.current_question.blank?
+          @room.current_question = @question
+          @room.save
+        end
         format.html { redirect_to question_url(@question), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
