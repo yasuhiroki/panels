@@ -3,4 +3,6 @@ class Answer < ApplicationRecord
   has_one :question_answer, dependent: :destroy
 
   accepts_nested_attributes_for :question_answer
+
+  validates :text, presence: true
 end
