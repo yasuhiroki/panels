@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :questions, shallow: true
+    member do
+      resources :answers, only: %i[ index new create ]
+    end
   end
+  resources :answers, except: %i[ index new create ]
   resources :question_answers
   resources :respondents
-  resources :answers
 end

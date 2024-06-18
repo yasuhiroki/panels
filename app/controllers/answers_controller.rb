@@ -2,8 +2,9 @@ class AnswersController < ApplicationController
   before_action :set_respondent
   before_action :set_answer, only: %i[ show edit update destroy ]
 
-  # GET /answers or /answers.json
+  # GET /room/:id/answers or /room/:id/answers.json
   def index
+    @room = Room.find(params[:id])
     @respondents = Respondent.all
   end
 
@@ -11,17 +12,18 @@ class AnswersController < ApplicationController
   def show
   end
 
-  # GET /answers/new
+  # GET /room/:id/answers/new
   def new
+    @room = Room.find(params[:id])
     @answer = Answer.new
-    @answer.build_question_answer(question_id: Question.first.id)
+    @answer.build_question_answer(question_id: @room.current_question_id)
   end
 
   # GET /answers/1/edit
   def edit
   end
 
-  # POST /answers or /answers.json
+  # POST /room/:id/answers or /room/:id/answers.json
   def create
     @answer = Answer.new(answer_params)
 
@@ -60,13 +62,13 @@ class AnswersController < ApplicationController
   end
 
   private
+    def set_respondent
+      @respondent = Respondent.find(session[:respondent_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
-    end
-
-    def set_respondent
-      @respondent = Respondent.find(session[:respondent_id])
     end
 
     # Only allow a list of trusted parameters through.
